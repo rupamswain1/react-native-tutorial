@@ -1,31 +1,32 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import MyButton from './src/component/Button';
+import {
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+  Platform,
+  StatusBar,
+} from 'react-native';
+import ProductsScreen from './src/screens/productsScreen/ProductsScreen';
+
 export default function App() {
   const arr = [1, 2, 3, 4];
+  console.log(Platform);
   return (
-    <View style={styles.container}>
-      <Text>Subscribe to Coding Every Day & Hit the like button</Text>
-      <MyButton title={'Subscribe'} />
-      <Text>Like btn</Text>
-      <MyButton title={'Like'} />
-      <Text>share btn</Text>
-      <MyButton title={'Share'} />
-      <View>
-        {arr.map((ele) => (
-          <Text>{ele}</Text>
-        ))}
+    <SafeAreaView style={styles.safeArea}>
+      <StatusBar backgroundColor={'orange'} />
+      <View style={styles.container}>
+        <ProductsScreen />
       </View>
-      <StatusBar style="auto" />
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  },
+  safeArea: {
+    flex: 1,
+    marginTop: Platform.OS === 'android' ? 0 : 0,
   },
 });
